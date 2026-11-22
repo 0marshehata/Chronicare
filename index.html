@@ -4,392 +4,1114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronicare - Health Management System</title>
 
-    <title>Chronicare - Authentication</title>
-
-    <!-- Tailwind -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Google Font -->
+    <!-- Google Font (Inter) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- CSS -->
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
-<body class="bg-slate-100 min-h-screen">
+<body class="bg-slate-100 min-h-screen font-[Inter] antialiased">
 
-    <main class="main-container grid grid-cols-12 bg-white overflow-hidden">
+    <!-- ======================================================================
+         1. AUTHENTICATION VIEW (Cloned from Login Folder)
+         ====================================================================== -->
+    <div id="auth-view" class="w-full min-h-screen">
+        <main class="main-container grid grid-cols-12 bg-white overflow-hidden">
 
-        <!-- LEFT PANEL -->
-        <section class="hero-section col-span-12 md:col-span-7 text-white p-8 md:p-12 flex flex-col justify-between relative overflow-hidden">
+            <!-- LEFT PANEL -->
+            <section class="hero-section col-span-12 md:col-span-7 text-white p-8 md:p-12 flex flex-col justify-between relative overflow-hidden">
 
-            <!-- Blue Overlay -->
-            <div class="hero-overlay absolute inset-0"></div>
+                <!-- Blue Overlay -->
+                <div class="hero-overlay absolute inset-0"></div>
 
-            <!-- Background Pattern -->
-            <div class="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:18px_18px]"></div>
+                <!-- Background Pattern -->
+                <div class="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:18px_18px]"></div>
 
-            <div class="relative z-10">
+                <div class="relative z-10">
 
-                <!-- LOGO -->
-                <div class="flex items-center gap-4 mb-12">
+                    <!-- LOGO -->
+                    <div class="flex items-center gap-4 mb-12">
 
-                    <div class="relative flex items-center justify-center text-cyan-300">
-                        <i data-lucide="heart-pulse" class="w-16 h-16"></i>
-                        <i data-lucide="plus" class="w-7 h-7 absolute"></i>
+                        <div class="relative flex items-center justify-center text-cyan-300">
+                            <i data-lucide="heart-pulse" class="w-16 h-16"></i>
+                            <i data-lucide="plus" class="w-7 h-7 absolute"></i>
+                        </div>
+
+                        <div>
+                            <h1 class="text-4xl md:text-5xl font-extrabold">
+                                Chronicare
+                            </h1>
+
+                            <p class="text-cyan-100 text-sm mt-2 italic">
+                                Care Today .. Healthier Tomorrow
+                            </p>
+                        </div>
+
                     </div>
 
-                    <div>
-                        <h1 class="text-4xl md:text-5xl font-extrabold">
-                            Chronicare
-                        </h1>
 
-                        <p class="text-cyan-100 text-sm mt-2 italic">
-                            Care Today .. Healthier Tomorrow
+                    <!-- SIGN IN HERO -->
+                    <div id="hero-signin-content">
+
+                        <h2 class="text-3xl md:text-4xl font-bold leading-tight mb-10">
+                            Your health
+                            <br>
+                            <span class="text-cyan-300">is our priority</span>
+                        </h2>
+
+                        <ul class="space-y-6 text-base text-white">
+
+                            <li class="flex items-center gap-4">
+                                <div class="p-3 bg-cyan-300/20 rounded-full">
+                                    <i data-lucide="calendar-days" class="w-6 h-6 text-cyan-300"></i>
+                                </div>
+                                <span>
+                                    Track Your Health
+                                    <br>
+                                    and Appointments
+                                </span>
+                            </li>
+
+                            <li class="flex items-center gap-4">
+                                <div class="p-3 bg-cyan-300/20 rounded-full">
+                                    <i data-lucide="pill" class="w-6 h-6 text-cyan-300"></i>
+                                </div>
+                                <span>Manage Your Medications</span>
+                            </li>
+
+                            <li class="flex items-center gap-4">
+                                <div class="p-3 bg-cyan-300/20 rounded-full">
+                                    <i data-lucide="chart-no-axes-combined" class="w-6 h-6 text-cyan-300"></i>
+                                </div>
+                                <span>Monitor Your Condition</span>
+                            </li>
+
+                        </ul>
+                    </div>
+
+
+                    <!-- SIGN UP HERO -->
+                    <div id="hero-signup-content" class="hidden">
+
+                        <h2 class="text-3xl md:text-4xl font-bold leading-tight mb-10">
+                            Take Control
+                            <br>
+                            <span class="text-cyan-300">of Your Health</span>
+                        </h2>
+
+                        <ul class="space-y-6 text-base text-white">
+
+                            <li class="flex items-center gap-4">
+                                <div class="p-3 bg-cyan-300/20 rounded-full">
+                                    <i data-lucide="folder-heart" class="w-6 h-6 text-cyan-300"></i>
+                                </div>
+                                <span>Store Your Medical History</span>
+                            </li>
+
+                            <li class="flex items-center gap-4">
+                                <div class="p-3 bg-cyan-300/20 rounded-full">
+                                    <i data-lucide="bell" class="w-6 h-6 text-cyan-300"></i>
+                                </div>
+                                <span>Get Reminders for Medications</span>
+                            </li>
+
+                            <li class="flex items-center gap-4">
+                                <div class="p-3 bg-cyan-300/20 rounded-full">
+                                    <i data-lucide="user-plus" class="w-6 h-6 text-cyan-300"></i>
+                                </div>
+                                <span>Consult with Doctors</span>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+
+
+                <!-- FOOTER -->
+                <div class="relative z-10 mt-12 pt-5 border-t border-white/20 flex items-center justify-between text-sm text-cyan-100">
+
+                    <span>© Chronicare Health Systems</span>
+
+                    <i data-lucide="activity" class="w-6 h-6 text-cyan-300"></i>
+
+                </div>
+
+            </section>
+
+
+            <!-- RIGHT PANEL -->
+            <section class="form-section col-span-12 md:col-span-5 bg-white p-7 md:p-12 flex flex-col justify-center relative">
+
+                <div class="absolute top-8 right-8 text-cyan-200">
+                    <i data-lucide="plus" class="w-12 h-12"></i>
+                </div>
+
+
+                <!-- SIGN IN FORM -->
+                <div id="signin-form-box" class="w-full max-w-md mx-auto space-y-7">
+
+                    <div class="text-center">
+                        <img src="./img/logo.jpeg"
+                        alt="signin image"
+                        class="signin-image">
+                        <h2 class="text-4xl font-extrabold text-[#0c2340]">
+                            Sign In
+                        </h2>
+
+                        <p class="text-sm text-slate-600 mt-3">
+                            Welcome back to Chronicare
                         </p>
                     </div>
 
-                </div>
+
+                    <form class="space-y-4" onsubmit="event.preventDefault();">
+
+                        <!-- EMAIL -->
+                        <div class="relative">
+                            <i data-lucide="mail" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
+
+                            <input type="email" placeholder="Email Address"
+                                class="auth-input w-full pl-12 pr-4 py-4 text-sm bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                required>
+                        </div>
 
 
-                <!-- SIGN IN HERO -->
-                <div id="hero-signin-content">
+                        <!-- PASSWORD -->
+                        <div class="relative">
+                            <i data-lucide="lock" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
 
-                    <h2 class="text-3xl md:text-4xl font-bold leading-tight mb-10">
-                        Your health
-                        <br>
-                        <span class="text-cyan-300">is our priority</span>
-                    </h2>
+                            <input type="password" id="signin-password" placeholder="Password"
+                                class="auth-input w-full pl-12 pr-12 py-4 text-sm bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                required>
 
-                    <ul class="space-y-6 text-base text-white">
-
-                        <li class="flex items-center gap-4">
-                            <div class="p-3 bg-cyan-300/20 rounded-full">
-                                <i data-lucide="calendar-days" class="w-6 h-6 text-cyan-300"></i>
-                            </div>
-                            <span>
-                                Track Your Health
-                                <br>
-                                and Appointments
-                            </span>
-                        </li>
-
-                        <li class="flex items-center gap-4">
-                            <div class="p-3 bg-cyan-300/20 rounded-full">
-                                <i data-lucide="pill" class="w-6 h-6 text-cyan-300"></i>
-                            </div>
-                            <span>Manage Your Medications</span>
-                        </li>
-
-                        <li class="flex items-center gap-4">
-                            <div class="p-3 bg-cyan-300/20 rounded-full">
-                                <i data-lucide="chart-no-axes-combined" class="w-6 h-6 text-cyan-300"></i>
-                            </div>
-                            <span>Monitor Your Condition</span>
-                        </li>
-
-                    </ul>
-                </div>
+                            <button type="button"
+                                class="toggle-password-btn absolute right-4 top-4 text-slate-500"
+                                data-target="signin-password">
+                                <i data-lucide="eye-off" class="w-5 h-5"></i>
+                            </button>
+                        </div>
 
 
-                <!-- SIGN UP HERO -->
-                <div id="hero-signup-content" class="hidden">
+                        <!-- REMEMBER -->
+                        <div class="flex items-center justify-between text-sm">
 
-                    <h2 class="text-3xl md:text-4xl font-bold leading-tight mb-10">
-                        Take Control
-                        <br>
-                        <span class="text-cyan-300">of Your Health</span>
-                    </h2>
+                            <label class="flex items-center gap-2 text-slate-700">
+                                <input type="checkbox" class="w-5 h-5">
+                                Remember me
+                            </label>
 
-                    <ul class="space-y-6 text-base text-white">
+                            <a href="#" class="text-blue-700 font-semibold hover:underline">
+                                Forgot password?
+                            </a>
 
-                        <li class="flex items-center gap-4">
-                            <div class="p-3 bg-cyan-300/20 rounded-full">
-                                <i data-lucide="folder-heart" class="w-6 h-6 text-cyan-300"></i>
-                            </div>
-                            <span>Store Your Medical History</span>
-                        </li>
-
-                        <li class="flex items-center gap-4">
-                            <div class="p-3 bg-cyan-300/20 rounded-full">
-                                <i data-lucide="bell" class="w-6 h-6 text-cyan-300"></i>
-                            </div>
-                            <span>Get Reminders for Medications</span>
-                        </li>
-
-                        <li class="flex items-center gap-4">
-                            <div class="p-3 bg-cyan-300/20 rounded-full">
-                                <i data-lucide="user-plus" class="w-6 h-6 text-cyan-300"></i>
-                            </div>
-                            <span>Consult with Doctors</span>
-                        </li>
-
-                    </ul>
-                </div>
-
-            </div>
+                        </div>
 
 
-            <!-- FOOTER -->
-            <div class="relative z-10 mt-12 pt-5 border-t border-white/20 flex items-center justify-between text-sm text-cyan-100">
+                        <!-- BUTTON -->
+                        <button type="submit"
+                            class="w-full bg-[#0c2340] hover:bg-blue-900 text-white font-semibold py-4 rounded-full flex items-center justify-center gap-3 shadow-lg transition">
 
-                <span>© Chronicare Health Systems</span>
+                            Sign In
 
-                <i data-lucide="activity" class="w-6 h-6 text-cyan-300"></i>
-
-            </div>
-
-        </section>
-
-
-        <!-- RIGHT PANEL -->
-        <section class="form-section col-span-12 md:col-span-5 bg-white p-7 md:p-12 flex flex-col justify-center relative">
-
-            <div class="absolute top-8 right-8 text-cyan-200">
-                <i data-lucide="plus" class="w-12 h-12"></i>
-            </div>
-
-
-            <!-- SIGN IN FORM -->
-            <div id="signin-form-box" class="w-full max-w-md mx-auto space-y-7">
-
-                <div class="text-center">
-                    <img src="./img/logo.jpeg"
-                    alt="signin image"
-                    class="signin-image">
-                    <h2 class="text-4xl font-extrabold text-[#0c2340]">
-                        Sign In
-                    </h2>
-
-                    <p class="text-sm text-slate-600 mt-3">
-                        Welcome back to Chronicare
-                    </p>
-                </div>
-
-
-                <form class="space-y-4" onsubmit="event.preventDefault();">
-
-                    <!-- EMAIL -->
-                    <div class="relative">
-                        <i data-lucide="mail" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
-
-                        <input type="email" placeholder="Email Address"
-                            class="auth-input w-full pl-12 pr-4 py-4 text-sm bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            required>
-                    </div>
-
-
-                    <!-- PASSWORD -->
-                    <div class="relative">
-                        <i data-lucide="lock" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
-
-                        <input type="password" id="signin-password" placeholder="Password"
-                            class="auth-input w-full pl-12 pr-12 py-4 text-sm bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            required>
-
-                        <button type="button"
-                            class="toggle-password-btn absolute right-4 top-4 text-slate-500"
-                            data-target="signin-password">
-                            <i data-lucide="eye-off" class="w-5 h-5"></i>
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
                         </button>
+
+                    </form>
+
+
+                    <!-- DIVIDER -->
+                    <div class="relative flex items-center justify-center py-2">
+                        <div class="border-t border-slate-200 w-full"></div>
+                        <span class="bg-white px-4 text-sm text-slate-500 absolute">or</span>
                     </div>
 
 
-                    <!-- REMEMBER -->
-                    <div class="flex items-center justify-between text-sm">
+                    <!-- GOOGLE -->
+                    <button type="button"
+                        class="w-full border border-slate-200 hover:bg-slate-50 text-slate-800 font-semibold py-4 rounded-full flex items-center justify-center gap-3">
 
-                        <label class="flex items-center gap-2 text-slate-700">
-                            <input type="checkbox" class="w-5 h-5">
-                            Remember me
-                        </label>
+                        <svg class="w-5 h-5" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+                            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.96H1.26v3.15C3.25 21.3 7.31 24 12 24z"/>
+                            <path fill="#FBBC05" d="M5.28 14.24c-.25-.72-.38-1.49-.38-2.24s.13-1.52.38-2.24V6.61H1.26C.46 8.23 0 10.06 0 12s.46 3.77 1.26 5.39l4.02-3.15z"/>
+                            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.25 2.7 1.26 6.61l4.02 3.15c.95-2.85 3.6-4.96 6.72-4.96z"/>
+                        </svg>
 
-                        <a href="#" class="text-blue-700 font-semibold hover:underline">
-                            Forgot password?
-                        </a>
-
-                    </div>
-
-
-                    <!-- BUTTON -->
-                    <button type="submit"
-                        class="w-full bg-[#0c2340] hover:bg-blue-900 text-white font-semibold py-4 rounded-full flex items-center justify-center gap-3 shadow-lg transition">
-
-                        Sign In
-
-                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        Continue with Google
                     </button>
 
-                </form>
 
+                    <p class="text-center text-sm text-slate-600 pt-2">
+                        Don't have an account?
 
-                <!-- DIVIDER -->
-                <div class="relative flex items-center justify-center py-2">
-                    <div class="border-t border-slate-200 w-full"></div>
-                    <span class="bg-white px-4 text-sm text-slate-500 absolute">or</span>
+                        <button type="button" id="to-signup-btn"
+                            class="text-blue-700 font-bold hover:underline">
+                            Sign Up
+                        </button>
+                    </p>
+
                 </div>
 
 
-                <!-- GOOGLE -->
-                <button type="button"
-                    class="w-full border border-slate-200 hover:bg-slate-50 text-slate-800 font-semibold py-4 rounded-full flex items-center justify-center gap-3">
 
-                    <svg class="w-5 h-5" viewBox="0 0 24 24">
-                        <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
-                        <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.96H1.26v3.15C3.25 21.3 7.31 24 12 24z"/>
-                        <path fill="#FBBC05" d="M5.28 14.24c-.25-.72-.38-1.49-.38-2.24s.13-1.52.38-2.24V6.61H1.26C.46 8.23 0 10.06 0 12s.46 3.77 1.26 5.39l4.02-3.15z"/>
-                        <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.25 2.7 1.26 6.61l4.02 3.15c.95-2.85 3.6-4.96 6.72-4.96z"/>
-                    </svg>
+                <!-- SIGN UP FORM -->
+                <div id="signup-form-box" class="w-full max-w-md mx-auto space-y-5 hidden">
 
-                    Continue with Google
-                </button>
+                    <div class="text-center">
+                        <img src="./img/logo.jpeg"
+                             alt="signup image"
+                             class="signin-image">
+                        <h2 class="text-4xl font-extrabold text-[#0c2340]">
+                            Sign Up
+                        </h2>
+
+                        <p class="text-sm text-slate-600 mt-3">
+                            Create your account to get started
+                        </p>
+                    </div>
 
 
-                <p class="text-center text-sm text-slate-600 pt-2">
-                    Don't have an account?
+                    <form class="space-y-3" onsubmit="event.preventDefault();">
 
-                    <button type="button" id="to-signup-btn"
-                        class="text-blue-700 font-bold hover:underline">
-                        Sign Up
+                        <!-- FULL NAME -->
+                        <div class="relative">
+                            <i data-lucide="user" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
+
+                            <input type="text" placeholder="Full Name"
+                                class="auth-input w-full pl-12 pr-4 py-3.5 text-sm bg-slate-50 border border-slate-200 rounded-2xl"
+                                required>
+                        </div>
+
+
+                        <!-- EMAIL -->
+                        <div class="relative">
+                            <i data-lucide="mail" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
+
+                            <input type="email" placeholder="Email Address"
+                                class="auth-input w-full pl-12 pr-4 py-3.5 text-sm bg-slate-50 border border-slate-200 rounded-2xl"
+                                required>
+                        </div>
+
+
+                        <!-- PASSWORD -->
+                        <div class="relative">
+                            <i data-lucide="lock" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
+
+                            <input type="password" id="signup-password" placeholder="Password"
+                                class="auth-input w-full pl-12 pr-12 py-3.5 text-sm bg-slate-50 border border-slate-200 rounded-2xl"
+                                required>
+
+                            <button type="button" class="toggle-password-btn absolute right-4 top-4"
+                                data-target="signup-password">
+                                <i data-lucide="eye-off" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+
+
+                        <!-- CONFIRM PASSWORD -->
+                        <div class="relative">
+                            <i data-lucide="lock" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
+
+                            <input type="password" id="confirm-password" placeholder="Confirm Password"
+                                class="auth-input w-full pl-12 pr-12 py-3.5 text-sm bg-slate-50 border border-slate-200 rounded-2xl"
+                                required>
+
+                            <button type="button" class="toggle-password-btn absolute right-4 top-4"
+                                data-target="confirm-password">
+                                <i data-lucide="eye-off" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+
+
+                        <!-- ROLE -->
+                        <div class="relative">
+                            <i data-lucide="user-check" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
+
+                            <select class="auth-input w-full pl-12 pr-8 py-3.5 text-sm bg-slate-50 border border-slate-200 rounded-2xl appearance-none">
+                                <option value="patient">Patient</option>
+                                <option value="doctor">Doctor</option>
+                            </select>
+
+                            <i data-lucide="chevron-down" class="w-4 h-4 absolute right-4 top-4 pointer-events-none"></i>
+                        </div>
+
+
+                        <!-- TERMS -->
+                        <div class="flex items-start gap-2 text-xs text-slate-600 pt-2">
+                            <input type="checkbox" id="terms" class="mt-0.5" required>
+
+                            <label for="terms">
+                                I agree to the
+                                <a href="#" class="text-blue-700 font-semibold">Terms & Conditions</a>
+                                and
+                                <a href="#" class="text-blue-700 font-semibold">Privacy Policy</a>
+                            </label>
+                        </div>
+
+
+                        <!-- CREATE ACCOUNT -->
+                        <button type="submit"
+                            class="w-full bg-[#0c2340] hover:bg-blue-900 text-white font-semibold py-3.5 rounded-full flex items-center justify-center gap-3">
+
+                            Create Account
+
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </button>
+
+                    </form>
+
+
+                    <p class="text-center text-sm text-slate-600 pt-2">
+                        Already have an account?
+
+                        <button type="button" id="to-signin-btn"
+                            class="text-blue-700 font-bold hover:underline">
+                            Sign In
+                        </button>
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ======================================================================
+         2. PORTAL APPLICATION VIEW (Unified App Shell)
+         ====================================================================== -->
+    <div id="portal-view" class="hidden min-h-screen flex bg-slate-100">
+
+        <!-- SIDEBAR NAVIGATION -->
+        <aside id="sidebar" class="w-64 bg-white p-6 hidden md:flex flex-col justify-between border-r border-slate-200 shrink-0">
+            <div>
+                <!-- BRAND LOGO -->
+                <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center gap-3 cursor-pointer" data-navigate="overview">
+                        <div class="relative flex items-center justify-center text-cyan-500">
+                            <i data-lucide="heart-pulse" class="w-10 h-10"></i>
+                            <i data-lucide="plus" class="w-4 h-4 absolute"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-extrabold text-[#0c2340]">Chronicare</h1>
+                            <p class="text-[11px] text-cyan-600 italic">Care Today .. Healthier Tomorrow</p>
+                        </div>
+                    </div>
+                    <!-- Close button for mobile drawer -->
+                    <button id="mobile-menu-close" class="md:hidden text-slate-400 hover:text-slate-600">
+                        <i data-lucide="x" class="w-6 h-6"></i>
                     </button>
-                </p>
+                </div>
 
+                <!-- NAVIGATION SECTIONS -->
+                <p class="text-xs font-bold text-slate-400 tracking-wider mb-2">OVERVIEW</p>
+                <div class="space-y-1 mb-6">
+                    <button type="button" class="portal-nav-btn w-full flex items-center gap-3 p-3 rounded-xl transition text-sm font-semibold bg-cyan-50 text-[#0c2340]" data-target="overview" data-navigate="overview">
+                        <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                        <span>Overview</span>
+                    </button>
+                </div>
+
+                <p class="text-xs font-bold text-slate-400 tracking-wider mb-2">MY HEALTH</p>
+                <div class="space-y-1 text-slate-600">
+                    <button type="button" class="portal-nav-btn w-full flex items-center gap-3 p-3 rounded-xl transition text-sm font-semibold hover:bg-slate-50" data-target="medical-files" data-navigate="medical-files">
+                        <i data-lucide="folder-heart" class="w-5 h-5"></i>
+                        <span>My Medical Files</span>
+                    </button>
+                    <button type="button" class="trigger-upload-btn w-full flex items-center gap-3 p-3 rounded-xl transition text-sm font-semibold hover:bg-slate-50 text-slate-600">
+                        <i data-lucide="upload" class="w-5 h-5"></i>
+                        <span>Upload Record</span>
+                    </button>
+                    <button type="button" class="portal-nav-btn w-full flex items-center gap-3 p-3 rounded-xl transition text-sm font-semibold hover:bg-slate-50" data-target="lab-trends" data-navigate="lab-trends">
+                        <i data-lucide="trending-up" class="w-5 h-5"></i>
+                        <span>Lab Trends</span>
+                    </button>
+                    <button type="button" class="portal-nav-btn w-full flex items-center gap-3 p-3 rounded-xl transition text-sm font-semibold hover:bg-slate-50" data-target="timeline-archive" data-navigate="timeline-archive">
+                        <i data-lucide="sliders-horizontal" class="w-5 h-5"></i>
+                        <span>Timeline & Archive</span>
+                    </button>
+                    <button type="button" class="portal-nav-btn w-full flex items-center gap-3 p-3 rounded-xl transition text-sm font-semibold hover:bg-slate-50" data-target="sharing-access" data-navigate="sharing-access">
+                        <i data-lucide="share-2" class="w-5 h-5"></i>
+                        <span>Sharing & Access</span>
+                    </button>
+                </div>
             </div>
 
-
-
-            <!-- SIGN UP FORM -->
-            <div id="signup-form-box" class="w-full max-w-md mx-auto space-y-5 hidden">
-
-                <div class="text-center">
-                    <img src="./img/logo.jpeg"
-                         alt="signup image"
-                         class="signin-image"
-                    <h2 class="text-4xl font-extrabold text-[#0c2340]">
-                        Sign Up
-                    </h2>
-
-                    <p class="text-sm text-slate-600 mt-3">
-                        Create your account to get started
-                    </p>
+            <!-- HELP CARD & PROFILE -->
+            <div class="pt-6">
+                <div class="bg-cyan-50 border border-cyan-100 p-4 rounded-2xl mb-5">
+                    <p class="font-bold text-[#0c2340] text-sm">Need a hand?</p>
+                    <p class="text-xs text-slate-500 mt-1">Find answers about managing and sharing your health records.</p>
+                    <a href="#" class="text-xs font-bold text-cyan-700 mt-2 block hover:underline">Visit Help Center →</a>
                 </div>
 
+                <div class="flex items-center justify-between border-t border-slate-200 pt-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-cyan-200 flex items-center justify-center font-bold text-[#0c2340] text-sm">MH</div>
+                        <div>
+                            <p class="font-bold text-sm text-[#0c2340]">Maya Hassan</p>
+                            <p class="text-xs text-slate-500">Patient account</p>
+                        </div>
+                    </div>
+                    <button id="sign-out-btn" title="Sign Out" class="text-slate-400 hover:text-red-500 p-2 rounded-lg hover:bg-slate-50 transition">
+                        <i data-lucide="log-out" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
 
-                <form class="space-y-3" onsubmit="event.preventDefault();">
+        <!-- MAIN CONTENT AREA -->
+        <div class="flex-1 flex flex-col min-w-0">
 
-                    <!-- FULL NAME -->
-                    <div class="relative">
-                        <i data-lucide="user" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
+            <!-- TOP BAR -->
+            <header class="bg-white border-b border-slate-200 px-5 md:px-8 py-4 flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-3">
+                    <!-- Mobile Hamburger -->
+                    <button id="mobile-menu-btn" class="md:hidden text-slate-600 hover:text-[#0c2340] p-1.5 rounded-lg border border-slate-200">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
+                    <nav class="text-sm text-slate-500 flex items-center gap-2">
+                        <span>Workspace</span>
+                        <span class="text-slate-400">/</span>
+                        <span id="breadcrumb-current" class="font-bold text-[#0c2340]">Patient Portal</span>
+                    </nav>
+                </div>
 
-                        <input type="text" placeholder="Full Name"
-                            class="auth-input w-full pl-12 pr-4 py-3.5 text-sm bg-slate-50 border border-slate-200 rounded-2xl"
-                            required>
+                <div class="flex items-center gap-4">
+                    <!-- Top Search -->
+                    <div class="hidden sm:flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-full px-4 py-2 text-sm text-slate-500 w-64 md:w-80">
+                        <i data-lucide="search" class="w-4 h-4 text-slate-400"></i>
+                        <input type="text" placeholder="Search records, doctors..." class="outline-none bg-transparent w-full text-sm">
+                        <span class="text-[10px] bg-slate-200 text-slate-600 font-semibold px-1.5 py-0.5 rounded">⌘ K</span>
                     </div>
 
+                    <!-- Notification Bell -->
+                    <button class="w-10 h-10 bg-white border border-slate-200 rounded-full flex items-center justify-center hover:bg-slate-50 text-slate-600 transition relative">
+                        <i data-lucide="bell" class="w-5 h-5"></i>
+                        <span class="w-2 h-2 bg-cyan-500 rounded-full absolute top-2.5 right-2.5"></span>
+                    </button>
 
-                    <!-- EMAIL -->
-                    <div class="relative">
-                        <i data-lucide="mail" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
+                    <!-- User Pill -->
+                    <div class="flex items-center gap-2.5 pl-2 border-l border-slate-200">
+                        <div class="w-9 h-9 rounded-full bg-cyan-200 flex items-center justify-center font-bold text-[#0c2340] text-sm">MH</div>
+                        <div class="hidden lg:block text-left">
+                            <p class="font-bold text-xs text-[#0c2340] leading-tight">Maya Hassan</p>
+                            <p class="text-[10px] text-slate-400">Patient</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
 
-                        <input type="email" placeholder="Email Address"
-                            class="auth-input w-full pl-12 pr-4 py-3.5 text-sm bg-slate-50 border border-slate-200 rounded-2xl"
-                            required>
+            <!-- HIDDEN FILE INPUT -->
+            <input type="file" id="fileInput" hidden>
+
+            <!-- SUBVIEWS CONTAINER -->
+            <main class="flex-1 p-5 md:p-8 overflow-y-auto">
+
+                <!-- ----------------------------------------------------------
+                     SUBVIEW A: OVERVIEW (Patient Portal Dashboard)
+                     ---------------------------------------------------------- -->
+                <section id="view-overview" class="portal-subview">
+                    <div class="mb-6">
+                        <p class="text-xs font-bold tracking-widest text-cyan-700">HEALTH OVERVIEW</p>
+                        <h2 class="text-3xl font-extrabold text-[#0c2340] mt-1">Your health at a glance</h2>
+                        <p class="text-sm text-slate-500 mt-1">A clear view of your records, trends, and sharing activity.</p>
                     </div>
 
+                    <!-- HERO BANNER -->
+                    <div class="bg-[#0c2340] text-white rounded-2xl p-6 md:p-8 flex items-center justify-between overflow-hidden relative shadow-md mb-6">
+                        <div class="relative z-10 max-w-2xl">
+                            <p class="text-[11px] tracking-widest text-cyan-300 font-semibold uppercase">Saturday, 21 November 2026</p>
+                            <h3 class="text-2xl md:text-3xl font-bold mt-2">Good morning, Maya ✨</h3>
+                            <p class="text-sm text-cyan-100 mt-1.5 leading-relaxed">Your health journey, clearly organized. You have 3 new record updates and 1 lab trend to review.</p>
+                            <div class="flex flex-wrap gap-3 mt-5">
+                                <button type="button" class="trigger-upload-btn bg-cyan-400 hover:bg-cyan-300 text-[#0c2340] font-bold text-sm px-4 py-2.5 rounded-xl transition flex items-center gap-2">
+                                    <i data-lucide="plus" class="w-4 h-4"></i>
+                                    <span>Upload a record</span>
+                                </button>
+                                <button type="button" data-navigate="medical-files" class="bg-white/10 hover:bg-white/20 border border-white/20 font-semibold text-sm px-4 py-2.5 rounded-xl transition">
+                                    View my records
+                                </button>
+                            </div>
+                        </div>
+                        <i data-lucide="heart-pulse" class="w-32 h-32 text-cyan-300/15 hidden md:block shrink-0"></i>
+                    </div>
 
-                    <!-- PASSWORD -->
-                    <div class="relative">
-                        <i data-lucide="lock" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
+                    <!-- STATS CARDS -->
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                        <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm cursor-pointer hover:border-cyan-200 transition" data-navigate="medical-files">
+                            <div class="flex justify-between items-center">
+                                <p class="text-[11px] font-bold text-slate-500 uppercase">Total Medical Files</p>
+                                <div class="w-8 h-8 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                                    <i data-lucide="file-text" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                            <p class="text-3xl font-extrabold text-[#0c2340] mt-3">42</p>
+                            <p class="text-xs text-green-600 font-semibold mt-1">+4 added this month</p>
+                        </div>
 
-                        <input type="password" id="signup-password" placeholder="Password"
-                            class="auth-input w-full pl-12 pr-12 py-3.5 text-sm bg-slate-50 border border-slate-200 rounded-2xl"
-                            required>
+                        <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm cursor-pointer hover:border-cyan-200 transition" data-navigate="lab-trends">
+                            <div class="flex justify-between items-center">
+                                <p class="text-[11px] font-bold text-slate-500 uppercase">Lab Results Tracked</p>
+                                <div class="w-8 h-8 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                                    <i data-lucide="trending-up" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                            <p class="text-3xl font-extrabold text-[#0c2340] mt-3">18</p>
+                            <p class="text-xs text-slate-500 mt-1">Across 4 test types</p>
+                        </div>
 
-                        <button type="button" class="toggle-password-btn absolute right-4 top-4"
-                            data-target="signup-password">
-                            <i data-lucide="eye-off" class="w-5 h-5"></i>
+                        <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm cursor-pointer hover:border-cyan-200 transition" data-navigate="sharing-access">
+                            <div class="flex justify-between items-center">
+                                <p class="text-[11px] font-bold text-slate-500 uppercase">Active Shares</p>
+                                <div class="w-8 h-8 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                                    <i data-lucide="share-2" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                            <p class="text-3xl font-extrabold text-[#0c2340] mt-3">3</p>
+                            <p class="text-xs text-slate-500 mt-1">2 doctors • 1 specialist</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm">
+                            <div class="flex justify-between items-center">
+                                <p class="text-[11px] font-bold text-slate-500 uppercase">Storage Used</p>
+                                <div class="w-8 h-8 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                                    <i data-lucide="hard-drive" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                            <p class="text-3xl font-extrabold text-[#0c2340] mt-3">1.8 <span class="text-base font-normal text-slate-400">GB</span></p>
+                            <p class="text-xs text-slate-500 mt-1">of 5 GB available</p>
+                        </div>
+                    </div>
+
+                    <!-- BOTTOM GRID: RECENT RECORDS & RECENT ACTIVITY -->
+                    <div class="grid lg:grid-cols-12 gap-5">
+                        <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                            <div class="flex justify-between items-center mb-4">
+                                <div>
+                                    <h3 class="font-bold text-[#0c2340] text-base">Recent medical records</h3>
+                                    <p class="text-xs text-slate-500">Your latest uploads and updates</p>
+                                </div>
+                                <button type="button" data-navigate="medical-files" class="text-xs font-bold text-cyan-700 hover:text-cyan-800 flex items-center gap-1">
+                                    <span>View all</span>
+                                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-sm">
+                                    <thead>
+                                        <tr class="text-left text-[11px] text-slate-500 bg-slate-50">
+                                            <th class="p-3 rounded-l-lg font-bold">DOCUMENT</th>
+                                            <th class="p-3 font-bold">CONDITION</th>
+                                            <th class="p-3 font-bold">DATE</th>
+                                            <th class="p-3 rounded-r-lg font-bold">STATUS</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-100">
+                                        <tr class="hover:bg-slate-50 transition">
+                                            <td class="p-3 font-bold text-[#0c2340]">
+                                                HbA1c Lab Report<br>
+                                                <span class="text-xs font-normal text-slate-500">Laboratory report</span>
+                                            </td>
+                                            <td class="p-3 text-slate-600">Diabetes</td>
+                                            <td class="p-3 text-slate-600">18 Nov 2026</td>
+                                            <td class="p-3"><span class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full">Shared</span></td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50 transition">
+                                            <td class="p-3 font-bold text-[#0c2340]">
+                                                Cardiology Follow-up<br>
+                                                <span class="text-xs font-normal text-slate-500">Specialist report</span>
+                                            </td>
+                                            <td class="p-3 text-slate-600">Hypertension</td>
+                                            <td class="p-3 text-slate-600">12 Nov 2026</td>
+                                            <td class="p-3"><span class="bg-cyan-100 text-cyan-700 text-xs font-bold px-3 py-1 rounded-full">Private</span></td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50 transition">
+                                            <td class="p-3 font-bold text-[#0c2340]">
+                                                Kidney Function Test<br>
+                                                <span class="text-xs font-normal text-slate-500">Laboratory report</span>
+                                            </td>
+                                            <td class="p-3 text-slate-600">CKD</td>
+                                            <td class="p-3 text-slate-600">04 Nov 2026</td>
+                                            <td class="p-3"><span class="bg-cyan-100 text-cyan-700 text-xs font-bold px-3 py-1 rounded-full">Private</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <h3 class="font-bold text-[#0c2340] text-base">Recent activity</h3>
+                                    <a href="#" class="text-xs font-bold text-cyan-700 hover:underline">Activity log</a>
+                                </div>
+                                <p class="text-xs text-slate-500 mb-4">Updates across your records</p>
+
+                                <div class="space-y-4 text-sm">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <p class="font-bold text-[#0c2340]">Dr. Ahmed viewed a shared report</p>
+                                            <p class="text-xs text-slate-500 mt-0.5">HbA1c Lab Report • Shared access</p>
+                                        </div>
+                                        <span class="text-xs text-slate-400 font-medium">2h</span>
+                                    </div>
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <p class="font-bold text-[#0c2340]">New file uploaded successfully</p>
+                                            <p class="text-xs text-slate-500 mt-0.5">HbA1c Lab Report • Diabetes</p>
+                                        </div>
+                                        <span class="text-xs text-slate-400 font-medium">1d</span>
+                                    </div>
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <p class="font-bold text-[#0c2340]">Access expires soon</p>
+                                            <p class="text-xs text-slate-500 mt-0.5">Dr. Salma Nabil • 25 Nov 2026</p>
+                                        </div>
+                                        <span class="text-xs text-slate-400 font-medium">2d</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border-t border-slate-100 mt-5 pt-4">
+                                <div class="flex justify-between items-center">
+                                    <p class="font-bold text-[#0c2340] text-sm">Your health profile</p>
+                                    <span class="bg-green-100 text-green-700 text-xs font-bold px-2.5 py-0.5 rounded-full">Up to date</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-1">3 conditions are being actively tracked</p>
+                                <div class="flex flex-wrap gap-2 mt-3">
+                                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-xs font-semibold">Diabetes</span>
+                                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-xs font-semibold">Hypertension</span>
+                                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-xs font-semibold">CKD</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- ----------------------------------------------------------
+                     SUBVIEW B: MEDICAL FILES (My Medical Files Archive)
+                     ---------------------------------------------------------- -->
+                <section id="view-medical-files" class="portal-subview hidden">
+                    <div class="page-heading">
+                        <div>
+                            <span class="eyebrow">RECORD LIBRARY</span>
+                            <h1>My Medical Files</h1>
+                            <p>All your reports, prescriptions, and documents are organized in one secure archive.</p>
+                        </div>
+                        <button type="button" class="upload-btn trigger-upload-btn" id="uploadBtn">
+                            <i data-lucide="plus"></i>
+                            <span>Upload Record</span>
                         </button>
                     </div>
 
+                    <div class="toolbar">
+                        <div class="search-box">
+                            <i data-lucide="search"></i>
+                            <input id="searchInput" placeholder="Search files by name...">
+                        </div>
 
-                    <!-- CONFIRM PASSWORD -->
-                    <div class="relative">
-                        <i data-lucide="lock" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
-
-                        <input type="password" id="confirm-password" placeholder="Confirm Password"
-                            class="auth-input w-full pl-12 pr-12 py-3.5 text-sm bg-slate-50 border border-slate-200 rounded-2xl"
-                            required>
-
-                        <button type="button" class="toggle-password-btn absolute right-4 top-4"
-                            data-target="confirm-password">
-                            <i data-lucide="eye-off" class="w-5 h-5"></i>
-                        </button>
-                    </div>
-
-
-                    <!-- ROLE -->
-                    <div class="relative">
-                        <i data-lucide="user-check" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
-
-                        <select class="auth-input w-full pl-12 pr-8 py-3.5 text-sm bg-slate-50 border border-slate-200 rounded-2xl appearance-none">
-                            <option value="patient">Patient</option>
-                            <option value="doctor">Doctor</option>
+                        <select id="categoryFilter">
+                            <option value="all">All conditions</option>
+                            <option value="diabetes">Diabetes</option>
+                            <option value="hypertension">Hypertension</option>
+                            <option value="cardiac">Cardiac</option>
                         </select>
 
-                        <i data-lucide="chevron-down" class="w-4 h-4 absolute right-4 top-4 pointer-events-none"></i>
+                        <select id="typeFilter">
+                            <option value="all">All categories</option>
+                            <option value="lab">Lab Report</option>
+                            <option value="prescription">Prescription</option>
+                            <option value="imaging">Imaging</option>
+                        </select>
+
+                        <button type="button" class="filter-btn" id="resetBtn">Reset filters</button>
+                        <span class="record-count" id="recordCount">6 Records</span>
                     </div>
 
+                    <div class="content-grid">
+                        <div class="records-card">
+                            <div class="card-heading">
+                                <div>
+                                    <h2>All medical records</h2>
+                                    <p>Securely stored medical documents</p>
+                                </div>
+                                <button type="button" class="sort-btn">Newest first ⌄</button>
+                            </div>
 
-                    <!-- TERMS -->
-                    <div class="flex items-start gap-2 text-xs text-slate-600 pt-2">
-                        <input type="checkbox" id="terms" class="mt-0.5" required>
+                            <div class="table-wrapper">
+                                <table class="records-table">
+                                    <thead>
+                                        <tr>
+                                            <th>FILE NAME</th>
+                                            <th>CATEGORY</th>
+                                            <th>TYPE</th>
+                                            <th>UPLOADED</th>
+                                            <th>STATUS</th>
+                                            <th>ACTION</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="recordsTable">
+                                        <tr data-category="diabetes" data-type="lab">
+                                            <td><span class="file-icon">PDF</span><strong>HbA1c Lab Report</strong></td>
+                                            <td>Diabetes</td>
+                                            <td>Lab Report</td>
+                                            <td>18 Mar 2026</td>
+                                            <td><span class="status reviewed">Reviewed</span></td>
+                                            <td><button type="button" class="more-btn">•••</button></td>
+                                        </tr>
+                                        <tr data-category="hypertension" data-type="lab">
+                                            <td><span class="file-icon">PDF</span><strong>Cardiology Follow-up</strong></td>
+                                            <td>Hypertension</td>
+                                            <td>Lab Report</td>
+                                            <td>12 Mar 2026</td>
+                                            <td><span class="status review">Review</span></td>
+                                            <td><button type="button" class="more-btn">•••</button></td>
+                                        </tr>
+                                        <tr data-category="diabetes" data-type="lab">
+                                            <td><span class="file-icon">PDF</span><strong>Kidney Function Test</strong></td>
+                                            <td>Diabetes</td>
+                                            <td>Lab Report</td>
+                                            <td>04 Mar 2026</td>
+                                            <td><span class="status reviewed">Reviewed</span></td>
+                                            <td><button type="button" class="more-btn">•••</button></td>
+                                        </tr>
+                                        <tr data-category="cardiac" data-type="imaging">
+                                            <td><span class="file-icon">PDF</span><strong>ECG Report</strong></td>
+                                            <td>Cardiac</td>
+                                            <td>Imaging</td>
+                                            <td>25 Feb 2026</td>
+                                            <td><span class="status reviewed">Reviewed</span></td>
+                                            <td><button type="button" class="more-btn">•••</button></td>
+                                        </tr>
+                                        <tr data-category="hypertension" data-type="prescription">
+                                            <td><span class="file-icon">PDF</span><strong>Discharge Summary</strong></td>
+                                            <td>Hypertension</td>
+                                            <td>Prescription</td>
+                                            <td>10 Feb 2026</td>
+                                            <td><span class="status archived">Archived</span></td>
+                                            <td><button type="button" class="more-btn">•••</button></td>
+                                        </tr>
+                                        <tr data-category="diabetes" data-type="lab">
+                                            <td><span class="file-icon">PDF</span><strong>Fasting Glucose Result</strong></td>
+                                            <td>Diabetes</td>
+                                            <td>Lab Report</td>
+                                            <td>06 Feb 2026</td>
+                                            <td><span class="status review">Review</span></td>
+                                            <td><button type="button" class="more-btn">•••</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
-                        <label for="terms">
-                            I agree to the
-                            <a href="#" class="text-blue-700 font-semibold">Terms & Conditions</a>
-                            and
-                            <a href="#" class="text-blue-700 font-semibold">Privacy Policy</a>
-                        </label>
+                            <div class="table-footer">
+                                <span>Showing 6 records</span>
+                                <span class="font-semibold cursor-pointer">‹ 1 2 3 ›</span>
+                            </div>
+                        </div>
+
+                        <div class="right-column">
+                            <div class="side-card">
+                                <h3>Filter by condition</h3>
+                                <div class="condition-row">All conditions <span>42</span></div>
+                                <div class="condition-row">Diabetes <span>18</span></div>
+                                <div class="condition-row">Hypertension <span>12</span></div>
+                                <div class="condition-row">Chronic kidney disease <span>6</span></div>
+                            </div>
+
+                            <div class="side-card archive-card">
+                                <h3>Archive</h3>
+                                <p>Keep older records organized and accessible whenever you need them.</p>
+                                <div class="archive-info">
+                                    <i data-lucide="archive"></i>
+                                    <strong>6 Files</strong>
+                                </div>
+                                <button type="button" class="archive-btn" data-navigate="timeline-archive">Open archive →</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- ----------------------------------------------------------
+                     SUBVIEW C: SHARING & ACCESS (Privacy Controls)
+                     ---------------------------------------------------------- -->
+                <section id="view-sharing-access" class="portal-subview hidden">
+                    <div class="mb-6">
+                        <p class="text-xs font-bold tracking-widest text-cyan-700">PRIVACY CONTROLS</p>
+                        <h2 class="text-3xl font-extrabold text-[#0c2340] mt-1">Sharing & access</h2>
+                        <p class="text-sm text-slate-500 mt-1">Manage doctor permissions, expiry dates, and the records you choose to share.</p>
                     </div>
 
+                    <div class="grid lg:grid-cols-12 gap-6 items-start">
+                        <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                            <div class="flex justify-between items-start mb-5">
+                                <div>
+                                    <h3 class="font-bold text-[#0c2340] text-base">Active sharing permissions</h3>
+                                    <p class="text-xs text-slate-500 mt-0.5">You decide which doctor sees each selected record</p>
+                                </div>
+                                <span class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full">3 active shares</span>
+                            </div>
 
-                    <!-- CREATE ACCOUNT -->
-                    <button type="submit"
-                        class="w-full bg-[#0c2340] hover:bg-blue-900 text-white font-semibold py-3.5 rounded-full flex items-center justify-center gap-3">
+                            <!-- DOCTOR 1 -->
+                            <div class="flex items-center gap-4 border border-slate-100 rounded-xl p-4 mb-3.5 hover:border-slate-200 transition">
+                                <div class="w-11 h-11 rounded-full bg-cyan-200 flex items-center justify-center font-bold text-[#0c2340] text-sm shrink-0">AF</div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-bold text-sm text-[#0c2340]">Dr. Ahmed Farouk</p>
+                                    <p class="text-xs text-slate-500">Internal Medicine • Verified doctor</p>
+                                    <div class="flex flex-wrap items-center gap-2 mt-2">
+                                        <span class="bg-slate-100 text-slate-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">2 files shared</span>
+                                        <span class="text-xs text-slate-400">HbA1c • Prescription</span>
+                                    </div>
+                                </div>
+                                <div class="text-right shrink-0">
+                                    <span class="bg-green-100 text-green-700 text-xs font-bold px-2.5 py-1 rounded-full">Active</span>
+                                    <p class="text-[11px] text-slate-400 mt-2">Expires 30 Dec 2026</p>
+                                </div>
+                            </div>
 
-                        Create Account
+                            <!-- DOCTOR 2 -->
+                            <div class="flex items-center gap-4 border border-slate-100 rounded-xl p-4 mb-3.5 hover:border-slate-200 transition">
+                                <div class="w-11 h-11 rounded-full bg-violet-200 flex items-center justify-center font-bold text-[#0c2340] text-sm shrink-0">SN</div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-bold text-sm text-[#0c2340]">Dr. Salma Nabil</p>
+                                    <p class="text-xs text-slate-500">Cardiology • Verified doctor</p>
+                                    <div class="flex flex-wrap items-center gap-2 mt-2">
+                                        <span class="bg-slate-100 text-slate-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">1 file shared</span>
+                                        <span class="text-xs text-slate-400">Cardiology follow-up</span>
+                                    </div>
+                                </div>
+                                <div class="text-right shrink-0">
+                                    <span class="bg-green-100 text-green-700 text-xs font-bold px-2.5 py-1 rounded-full">Active</span>
+                                    <p class="text-[11px] text-slate-400 mt-2">Expires 25 Nov 2026</p>
+                                </div>
+                            </div>
 
-                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                    </button>
+                            <!-- DOCTOR 3 -->
+                            <div class="flex items-center gap-4 border border-slate-100 rounded-xl p-4 hover:border-slate-200 transition">
+                                <div class="w-11 h-11 rounded-full bg-orange-100 flex items-center justify-center font-bold text-[#0c2340] text-sm shrink-0">MK</div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-bold text-sm text-[#0c2340]">Dr. Mariam Khaled</p>
+                                    <p class="text-xs text-slate-500">Nephrology • Verified doctor</p>
+                                    <div class="flex flex-wrap items-center gap-2 mt-2">
+                                        <span class="bg-slate-100 text-slate-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">1 file shared</span>
+                                        <span class="text-xs text-slate-400">Kidney function test</span>
+                                    </div>
+                                </div>
+                                <div class="text-right shrink-0">
+                                    <span class="bg-green-100 text-green-700 text-xs font-bold px-2.5 py-1 rounded-full">Active</span>
+                                    <p class="text-[11px] text-slate-400 mt-2">Expires 12 Jan 2027</p>
+                                </div>
+                            </div>
 
-                </form>
+                            <div class="flex justify-between items-center mt-5 pt-4 border-t border-slate-100">
+                                <p class="text-xs text-slate-400">Access can be revoked at any time.</p>
+                                <a href="#" class="text-xs font-bold text-cyan-700 hover:underline">View sharing history</a>
+                            </div>
+                        </div>
+
+                        <!-- CREATE NEW SHARE -->
+                        <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold text-[#0c2340] text-base">Create a new share</h3>
+                                    <p class="text-xs text-slate-500 mt-0.5">Grant access to selected records securely</p>
+                                </div>
+                                <div class="w-9 h-9 bg-cyan-50 rounded-lg flex items-center justify-center text-cyan-700">
+                                    <i data-lucide="share-2" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+
+                            <form id="newShareForm" class="mt-5 space-y-4">
+                                <div>
+                                    <label class="text-xs font-bold text-[#0c2340] block mb-1.5">Select a verified doctor</label>
+                                    <select class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm outline-none focus:border-cyan-500 transition">
+                                        <option>Dr. Ahmed Farouk (Internal Medicine)</option>
+                                        <option>Dr. Salma Nabil (Cardiology)</option>
+                                        <option>Dr. Mariam Khaled (Nephrology)</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="text-xs font-bold text-[#0c2340] block mb-1.5">Choose files to share</label>
+                                    <select class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm outline-none focus:border-cyan-500 transition">
+                                        <option>All Current Medical Files</option>
+                                        <option>HbA1c Lab Report</option>
+                                        <option>Cardiology Follow-up</option>
+                                        <option>Kidney Function Test</option>
+                                        <option>ECG Report</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="text-xs font-bold text-[#0c2340] block mb-1.5">Access expires on</label>
+                                    <input type="date" value="2026-12-30" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm outline-none focus:border-cyan-500 transition">
+                                </div>
+
+                                <div class="pt-2">
+                                    <p class="text-[11px] font-bold tracking-widest text-slate-400 mb-2 uppercase">Permission Settings</p>
+                                    <label class="flex justify-between items-center border-b border-slate-100 py-2.5 text-sm text-slate-700 cursor-pointer">
+                                        <span>View selected files</span>
+                                        <input type="checkbox" checked class="w-4 h-4 accent-[#0c2340]">
+                                    </label>
+                                    <label class="flex justify-between items-center border-b border-slate-100 py-2.5 text-sm text-slate-700 cursor-pointer">
+                                        <span>Download shared files</span>
+                                        <input type="checkbox" checked class="w-4 h-4 accent-[#0c2340]">
+                                    </label>
+                                    <label class="flex justify-between items-center py-2.5 text-sm text-slate-700 cursor-pointer">
+                                        <span>View lab trends</span>
+                                        <input type="checkbox" checked class="w-4 h-4 accent-[#0c2340]">
+                                    </label>
+                                </div>
+
+                                <button type="submit" class="w-full bg-[#0c2340] hover:bg-blue-950 text-white font-semibold py-3.5 rounded-xl text-sm transition">
+                                    Review & share securely →
+                                </button>
+                                <p class="text-[11px] text-center text-slate-400">The doctor will only be granted access to the files you select.</p>
+                            </form>
+                        </div>
+                    </div>
+                </section>
 
 
-                <p class="text-center text-sm text-slate-600 pt-2">
-                    Already have an account?
+                <!-- ----------------------------------------------------------
+                     SUBVIEW D: LAB TRENDS
+                     ---------------------------------------------------------- -->
+                <section id="view-lab-trends" class="portal-subview hidden">
+                    <div class="mb-6">
+                        <p class="text-xs font-bold tracking-widest text-cyan-700">CLINICAL METRICS</p>
+                        <h2 class="text-3xl font-extrabold text-[#0c2340] mt-1">Lab Trends & Biomarkers</h2>
+                        <p class="text-sm text-slate-500 mt-1">Track chronic indicators over time with automatic lab result parsing.</p>
+                    </div>
 
-                    <button type="button" id="to-signin-btn"
-                        class="text-blue-700 font-bold hover:underline">
-                        Sign In
-                    </button>
-                </p>
+                    <div class="grid md:grid-cols-3 gap-5 mb-6">
+                        <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-xs font-bold text-slate-500">HbA1c (Glycated Hemoglobin)</p>
+                                    <p class="text-2xl font-black text-[#0c2340] mt-1">6.4 <span class="text-xs font-semibold text-slate-400">%</span></p>
+                                </div>
+                                <span class="bg-green-100 text-green-700 text-xs font-bold px-2.5 py-0.5 rounded-full">Target &lt; 7.0</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2 rounded-full mt-4 overflow-hidden">
+                                <div class="bg-green-500 h-full rounded-full" style="width: 64%"></div>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-2">Latest test: 18 Nov 2026 (Down 0.3%)</p>
+                        </div>
 
-            </div>
+                        <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-xs font-bold text-slate-500">Blood Pressure</p>
+                                    <p class="text-2xl font-black text-[#0c2340] mt-1">128/82 <span class="text-xs font-semibold text-slate-400">mmHg</span></p>
+                                </div>
+                                <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-2.5 py-0.5 rounded-full">Stage 1 Pre</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2 rounded-full mt-4 overflow-hidden">
+                                <div class="bg-yellow-500 h-full rounded-full" style="width: 72%"></div>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-2">Latest reading: 12 Nov 2026</p>
+                        </div>
 
-        </section>
+                        <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-xs font-bold text-slate-500">eGFR (Kidney Function)</p>
+                                    <p class="text-2xl font-black text-[#0c2340] mt-1">88 <span class="text-xs font-semibold text-slate-400">mL/min</span></p>
+                                </div>
+                                <span class="bg-green-100 text-green-700 text-xs font-bold px-2.5 py-0.5 rounded-full">Normal Range</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2 rounded-full mt-4 overflow-hidden">
+                                <div class="bg-green-500 h-full rounded-full" style="width: 88%"></div>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-2">Latest test: 04 Nov 2026</p>
+                        </div>
+                    </div>
 
-    </main>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                        <div class="flex justify-between items-center mb-6">
+                            <div>
+                                <h3 class="font-bold text-[#0c2340]">Trend Graph Preview</h3>
+                                <p class="text-xs text-slate-500">Quarterly clinical progression summary</p>
+                            </div>
+                            <button type="button" class="sort-btn" data-navigate="medical-files">View source files</button>
+                        </div>
+                        <div class="h-48 border border-dashed border-slate-200 rounded-xl flex flex-col items-center justify-center text-slate-400">
+                            <i data-lucide="chart-spline" class="w-10 h-10 mb-2 text-cyan-600"></i>
+                            <p class="text-sm font-semibold text-slate-600">All biomarkers are trending within therapeutic goals.</p>
+                            <p class="text-xs text-slate-400 mt-1">Next scheduled routine check: January 2027</p>
+                        </div>
+                    </div>
+                </section>
 
 
-    <!-- JavaScript -->
+                <!-- ----------------------------------------------------------
+                     SUBVIEW E: TIMELINE & ARCHIVE
+                     ---------------------------------------------------------- -->
+                <section id="view-timeline-archive" class="portal-subview hidden">
+                    <div class="mb-6">
+                        <p class="text-xs font-bold tracking-widest text-cyan-700">CHRONOLOGICAL HISTORY</p>
+                        <h2 class="text-3xl font-extrabold text-[#0c2340] mt-1">Timeline & Archive</h2>
+                        <p class="text-sm text-slate-500 mt-1">Comprehensive historical record of visits, prescriptions, and lab tests.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                        <div class="space-y-6 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-slate-200">
+                            <div class="relative flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-full bg-cyan-100 text-cyan-700 flex items-center justify-center shrink-0 z-10 font-bold text-xs">Nov</div>
+                                <div class="bg-slate-50 p-4 rounded-xl flex-1 border border-slate-100">
+                                    <div class="flex justify-between items-start">
+                                        <p class="font-bold text-[#0c2340] text-sm">HbA1c Lab Test Complete</p>
+                                        <span class="text-xs text-slate-400">18 Nov 2026</span>
+                                    </div>
+                                    <p class="text-xs text-slate-600 mt-1">Report reviewed with Dr. Ahmed Farouk. Glucose control steady.</p>
+                                </div>
+                            </div>
+
+                            <div class="relative flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-full bg-cyan-100 text-cyan-700 flex items-center justify-center shrink-0 z-10 font-bold text-xs">Nov</div>
+                                <div class="bg-slate-50 p-4 rounded-xl flex-1 border border-slate-100">
+                                    <div class="flex justify-between items-start">
+                                        <p class="font-bold text-[#0c2340] text-sm">Cardiology Follow-up Consultation</p>
+                                        <span class="text-xs text-slate-400">12 Nov 2026</span>
+                                    </div>
+                                    <p class="text-xs text-slate-600 mt-1">Dr. Salma Nabil reviewed blood pressure trends. Medication dosage maintained.</p>
+                                </div>
+                            </div>
+
+                            <div class="relative flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center shrink-0 z-10 font-bold text-xs">Feb</div>
+                                <div class="bg-slate-50 p-4 rounded-xl flex-1 border border-slate-100">
+                                    <div class="flex justify-between items-start">
+                                        <p class="font-bold text-[#0c2340] text-sm">Annual Cardiovascular Assessment</p>
+                                        <span class="text-xs text-slate-400">25 Feb 2026</span>
+                                    </div>
+                                    <p class="text-xs text-slate-600 mt-1">ECG and stress test completed with normal readings.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <p class="text-right text-[10px] text-slate-400 mt-8">CHRONICARE HEALTH SYSTEMS • CONCEPT UI</p>
+            </main>
+        </div>
+    </div>
+
+    <!-- Application Script -->
     <script src="./js/script.js"></script>
-
-    <script>
-        lucide.createIcons();
-    </script>
-
 </body>
+
 </html>
