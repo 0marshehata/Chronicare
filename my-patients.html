@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Patients | Chronicare</title>
+
+    <link rel="stylesheet" href="css/my-patients.css">
+</head>
+
+<body>
+
+    <div class="patients-page">
+
+        <!-- Top Navbar -->
+        <nav class="navbar">
+            <div class="brand">
+                <span class="brand-icon">+</span>
+                <span class="brand-name">Chronicare</span>
+                <span class="portal-name">Doctor Portal</span>
+            </div>
+
+            <div class="doctor-info">
+                <div class="doctor-avatar">AH</div>
+                <span>Dr. Ahmed Hassan</span>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <h1>My Patients</h1>
+
+            <p class="page-description">
+                Patients who shared their records with you. Nothing else is visible.
+            </p>
+
+            <!-- Search and Filters -->
+            <div class="patients-controls">
+
+                <input 
+                    type="text" 
+                    id="patient-search"
+                    placeholder="Search by name or patient ID"
+                >
+
+                <button class="filter-btn active" id="all-btn">
+                    All (6)
+                </button>
+
+                <button class="filter-btn" id="updated-btn">
+                    New or updated (2)
+                </button>
+
+            </div>
+
+            <!-- Patients Table -->
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>PATIENT</th>
+                            <th>PATIENT ID</th>
+                            <th>SHARED</th>
+                            <th>LAST SHARED</th>
+                            <th>STATUS</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+            <tbody id="patients-table-body">
+
+    <tr>
+        <td>
+            <div class="patient-info">
+                <div class="patient-avatar">MS</div>
+
+            <div class="patient-details">
+                <strong>Mona Salem</strong>
+                <small>34 - Female</small>
+                </div>
+            </div>
+        </td>
+        <td>P-1042</td>
+        <td>7 files</td>
+        <td>25 Nov 2026</td>
+        <td><span class="status new">New</span></td>
+        <td><a href="patient-records.html?id=P-1042" class="open-records">Open records</a></td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="patient-info">
+                <div class="patient-avatar">OK</div>
+                <div>
+                    <strong>Omar Khaled</strong>
+                    <small>52 - Male</small>
+                </div>
+            </div>
+        </td>
+        <td>P-0987</td>
+        <td>12 files</td>
+        <td>24 Nov 2026</td>
+        <td><span class="status updated">Updated</span></td>
+        <td><a href="patient-records.html?id=P-0987" class="open-records">Open records</a></td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="patient-info">
+                <div class="patient-avatar">HM</div>
+                <div>
+                    <strong>Hana Mostafa</strong>
+                    <small>28 - Female</small>
+                </div>
+            </div>
+        </td>
+        <td>P-1103</td>
+        <td>3 files</td>
+        <td>20 Nov 2026</td>
+        <td>—</td>
+        <td><a href="patient-records.html?id=P-1103" class="open-records">Open records</a></td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="patient-info">
+                <div class="patient-avatar">YA</div>
+                <div>
+                    <strong>Youssef Adel</strong>
+                    <small>61 - Male</small>
+                </div>
+            </div>
+        </td>
+        <td>P-0856</td>
+        <td>9 files</td>
+        <td>14 Nov 2026</td>
+        <td>—</td>
+        <td><a href="patient-records.html?id=P-0856" class="open-records">Open records</a></td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="patient-info">
+                <div class="patient-avatar">SN</div>
+                <div>
+                    <strong>Salma Nabil</strong>
+                    <small>45 - Female</small>
+                </div>
+            </div>
+        </td>
+        <td>P-1150</td>
+        <td>5 files</td>
+        <td>02 Nov 2026</td>
+        <td>—</td>
+        <td><a href="patient-records.html?id=P-1150" class="open-records">Open records</a></td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="patient-info">
+                <div class="patient-avatar">KF</div>
+                <div>
+                    <strong>Karim Fathy</strong>
+                    <small>39 - Male</small>
+                </div>
+            </div>
+        </td>
+        <td>P-1021</td>
+        <td>4 files</td>
+        <td>28 Oct 2026</td>
+        <td>—</td>
+        <td><a href="patient-records.html?id=P-1021" class="open-records">Open records</a></td>
+    </tr>
+
+</tbody>       
+
+
+
+
+                </table>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+</html>
