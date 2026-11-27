@@ -177,9 +177,9 @@
                     <div class="relative">
                         <i data-lucide="mail" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
 
-                        <input type="email" placeholder="Email Address"
-                            class="auth-input w-full pl-12 pr-4 py-4 text-sm bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            required>
+                        <input type="email" id="signin-email" placeholder="Email Address"
+                              class="auth-input w-full pl-12 pr-4 py-4 text-sm bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                     required>
                     </div>
 
 
@@ -197,6 +197,23 @@
                             <i data-lucide="eye-off" class="w-5 h-5"></i>
                         </button>
                     </div>
+                    
+                 <!-- ROLE -->
+                 <div class="relative">
+                  <i data-lucide="user-check"
+                    class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
+
+                 <select id="signin-role"
+                     class="auth-input w-full pl-12 pr-8 py-4 text-sm bg-slate-50 border border-slate-200 rounded-2xl appearance-none">
+
+                  <option value="patient">Patient</option>
+                  <option value="doctor">Doctor</option>
+
+                </select>
+
+                   <i data-lucide="chevron-down"
+                       class="w-4 h-4 absolute right-4 top-4 pointer-events-none"></i>
+                 </div>
 
 
                     <!-- REMEMBER -->
@@ -261,122 +278,119 @@
 
 
 
-            <!-- SIGN UP FORM -->
-            <div id="signup-form-box" class="w-full max-w-md mx-auto space-y-5 hidden">
+        
+<!-- SIGN UP FORM -->
+<div id="signup-form-box" class="w-full max-w-md mx-auto space-y-5 hidden">
 
-                <div class="text-center">
-                    <img src="./img/logo.jpeg"
-                         alt="signup image"
-                         class="signin-image"
-                    <h2 class="text-4xl font-extrabold text-[#0c2340]">
-                        Sign Up
-                    </h2>
+    <div class="text-center">
+        <img src="./img/logo.jpeg"
+             alt="signup image"
+             class="signin-image">
 
-                    <p class="text-sm text-slate-600 mt-3">
-                        Create your account to get started
-                    </p>
-                </div>
+        <h2 class="text-4xl font-extrabold text-[#0c2340]">
+            Sign Up
+        </h2>
 
+        <p class="text-sm text-slate-600 mt-3">
+            Create your account to get started
+        </p>
+    </div>
 
-<form  class="space-y-3" onsubmit="event.preventDefault(); window.location.href='patient-portal.html';">
-                    <!-- FULL NAME -->
-                    <div class="relative">
-                        <i data-lucide="user" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
+    <form class="space-y-3">
 
-                        <input type="text" placeholder="Full Name"
-                            class="auth-input w-full pl-12 pr-4 py-3.5 text-sm bg-slate-50 border border-slate-200 rounded-2xl"
-                            required>
-                    </div>
+        <!-- FULL NAME -->
+        <div class="relative">
+            <i data-lucide="user" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
 
+            <input type="text" id="signup-name" placeholder="Full Name"
+                class="auth-input w-full pl-12 pr-4 py-3.5 text-sm bg-slate-50 border border-slate-200 rounded-2xl"
+                required>
+        </div>
 
-                    <!-- EMAIL -->
-                    <div class="relative">
-                        <i data-lucide="mail" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
+        <!-- EMAIL -->
+        <div class="relative">
+            <i data-lucide="mail" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
 
-                        <input type="email" placeholder="Email Address"
-                            class="auth-input w-full pl-12 pr-4 py-3.5 text-sm bg-slate-50 border border-slate-200 rounded-2xl"
-                            required>
-                    </div>
+            <input type="email" id="signup-email" placeholder="Email Address"
+                class="auth-input w-full pl-12 pr-4 py-3.5 text-sm bg-slate-50 border border-slate-200 rounded-2xl"
+                required>
+        </div>
 
+        <!-- PASSWORD -->
+        <div class="relative">
+            <i data-lucide="lock" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
 
-                    <!-- PASSWORD -->
-                    <div class="relative">
-                        <i data-lucide="lock" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
+            <input type="password" id="signup-password" placeholder="Password"
+                class="auth-input w-full pl-12 pr-12 py-3.5 text-sm bg-slate-50 border border-slate-200 rounded-2xl"
+                required>
 
-                        <input type="password" id="signup-password" placeholder="Password"
-                            class="auth-input w-full pl-12 pr-12 py-3.5 text-sm bg-slate-50 border border-slate-200 rounded-2xl"
-                            required>
+            <button type="button" class="toggle-password-btn absolute right-4 top-4"
+                data-target="signup-password">
+                <i data-lucide="eye-off" class="w-5 h-5"></i>
+            </button>
+        </div>
 
-                        <button type="button" class="toggle-password-btn absolute right-4 top-4"
-                            data-target="signup-password">
-                            <i data-lucide="eye-off" class="w-5 h-5"></i>
-                        </button>
-                    </div>
+        <!-- CONFIRM PASSWORD -->
+        <div class="relative">
+            <i data-lucide="lock" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
 
+            <input type="password" id="confirm-password" placeholder="Confirm Password"
+                class="auth-input w-full pl-12 pr-12 py-3.5 text-sm bg-slate-50 border border-slate-200 rounded-2xl"
+                required>
 
-                    <!-- CONFIRM PASSWORD -->
-                    <div class="relative">
-                        <i data-lucide="lock" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
+            <button type="button" class="toggle-password-btn absolute right-4 top-4"
+                data-target="confirm-password">
+                <i data-lucide="eye-off" class="w-5 h-5"></i>
+            </button>
+        </div>
 
-                        <input type="password" id="confirm-password" placeholder="Confirm Password"
-                            class="auth-input w-full pl-12 pr-12 py-3.5 text-sm bg-slate-50 border border-slate-200 rounded-2xl"
-                            required>
+        <!-- ROLE -->
+        <div class="relative">
+            <i data-lucide="user-check" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
 
-                        <button type="button" class="toggle-password-btn absolute right-4 top-4"
-                            data-target="confirm-password">
-                            <i data-lucide="eye-off" class="w-5 h-5"></i>
-                        </button>
-                    </div>
+            <select id="signup-role"
+                class="auth-input w-full pl-12 pr-8 py-3.5 text-sm bg-slate-50 border border-slate-200 rounded-2xl appearance-none">
+                <option value="patient">Patient</option>
+                <option value="doctor">Doctor</option>
+            </select>
 
+            <i data-lucide="chevron-down" class="w-4 h-4 absolute right-4 top-4 pointer-events-none"></i>
+        </div>
 
-                    <!-- ROLE -->
-                    <div class="relative">
-                        <i data-lucide="user-check" class="w-5 h-5 absolute left-4 top-4 text-[#0c2340]"></i>
+        <!-- TERMS -->
+        <div class="flex items-start gap-2 text-xs text-slate-600 pt-2">
+            <input type="checkbox" id="terms" class="mt-0.5" required>
 
-                        <select class="auth-input w-full pl-12 pr-8 py-3.5 text-sm bg-slate-50 border border-slate-200 rounded-2xl appearance-none">
-                            <option value="patient">Patient</option>
-                            <option value="doctor">Doctor</option>
-                        </select>
+            <label for="terms">
+                I agree to the
+                <a href="#" class="text-blue-700 font-semibold">Terms & Conditions</a>
+                and
+                <a href="#" class="text-blue-700 font-semibold">Privacy Policy</a>
+            </label>
+        </div>
 
-                        <i data-lucide="chevron-down" class="w-4 h-4 absolute right-4 top-4 pointer-events-none"></i>
-                    </div>
+        <!-- CREATE ACCOUNT -->
+        <button type="submit"
+            class="w-full bg-[#0c2340] hover:bg-blue-900 text-white font-semibold py-3.5 rounded-full flex items-center justify-center gap-3">
 
+            Create Account
 
-                    <!-- TERMS -->
-                    <div class="flex items-start gap-2 text-xs text-slate-600 pt-2">
-                        <input type="checkbox" id="terms" class="mt-0.5" required>
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </button>
 
-                        <label for="terms">
-                            I agree to the
-                            <a href="#" class="text-blue-700 font-semibold">Terms & Conditions</a>
-                            and
-                            <a href="#" class="text-blue-700 font-semibold">Privacy Policy</a>
-                        </label>
-                    </div>
+    </form>
 
+    <p class="text-center text-sm text-slate-600 pt-2">
+        Already have an account?
 
-                    <!-- CREATE ACCOUNT -->
-                    <button type="submit"
-                        class="w-full bg-[#0c2340] hover:bg-blue-900 text-white font-semibold py-3.5 rounded-full flex items-center justify-center gap-3">
+        <button type="button" id="to-signin-btn"
+            class="text-blue-700 font-bold hover:underline">
+            Sign In
+        </button>
+    </p>
 
-                        Create Account
+</div>
 
-                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                    </button>
-
-                </form>
-
-
-                <p class="text-center text-sm text-slate-600 pt-2">
-                    Already have an account?
-
-                    <button type="button" id="to-signin-btn"
-                        class="text-blue-700 font-bold hover:underline">
-                        Sign In
-                    </button>
-                </p>
-
-            </div>
 
         </section>
 
@@ -384,21 +398,12 @@
 
 
     <!-- JavaScript -->
-    <script src="./js/script.js"></script>
+    <script src="./script.js"></script>
 
     <script>
         lucide.createIcons();
     </script>
     
-<script>
-  document.querySelectorAll('form button').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      window.location.href = 'patient-portal.html';
-    });
-  });
-</script>
-
 
 
 </body>

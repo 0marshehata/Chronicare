@@ -1,0 +1,1026 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patient Medical Records | Chronicare</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* REPORT PRINT */
+@media print {
+
+    body {
+        background: white !important;
+    }
+
+    body * {
+        visibility: hidden !important;
+    }
+
+    #report-print-area,
+    #report-print-area * {
+        visibility: visible !important;
+    }
+
+    #report-print-area {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        background: white !important;
+        color: black !important;
+        padding: 20px !important;
+    }
+
+    #report-modal {
+        position: static !important;
+        background: white !important;
+        padding: 0 !important;
+    }
+
+    #report-modal > div {
+        max-height: none !important;
+        overflow: visible !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+    }
+
+    th, td {
+        border: 1px solid #ddd !important;
+        padding: 10px !important;
+    }
+
+}
+
+</style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+
+<main class="max-w-7xl mx-auto p-5 md:p-8">
+
+    <!-- HEADER -->
+    <header class="flex flex-wrap justify-between items-center gap-4 mb-8">
+
+        <div>
+            <a href="my-patients.html" class="text-blue-600 text-sm hover:underline">
+                ← Back to My Patients
+            </a>
+
+            <h1 class="text-3xl font-bold text-slate-800 mt-3">
+                Medical Records
+            </h1>
+
+            <p class="text-slate-500 mt-1">
+                Patient documents and laboratory history
+            </p>
+        </div>
+
+        <div class="bg-white border rounded-xl px-4 py-3">
+            <span class="text-sm text-slate-500">Doctor Portal</span>
+            <p class="font-semibold">Dr. Ahmed Hassan</p>
+        </div>
+
+    </header>
+
+
+    <!-- PATIENT INFO -->
+    <section class="bg-white rounded-2xl border p-6 mb-6">
+
+        <div class="flex items-center gap-4">
+
+            <div id="patient-avatar"
+                class="w-16 h-16 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xl font-bold">
+            </div>
+
+            <div>
+                <h2 id="patient-name" class="text-2xl font-bold"></h2>
+                <p id="patient-details" class="text-slate-500 mt-1"></p>
+                <p id="patient-id" class="text-sm text-blue-600 mt-1"></p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- STATISTICS -->
+    <section class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+
+        <div class="bg-white border rounded-2xl p-5">
+            <p class="text-slate-500 text-sm">Total Records</p>
+            <h3 id="total-records" class="text-3xl font-bold mt-2"></h3>
+        </div>
+
+        <div class="bg-white border rounded-2xl p-5">
+            <p class="text-slate-500 text-sm">Categories</p>
+            <h3 class="text-3xl font-bold mt-2">Medical</h3>
+        </div>
+
+        <div class="bg-white border rounded-2xl p-5">
+            <p class="text-slate-500 text-sm">Record Status</p>
+            <h3 class="text-3xl font-bold text-green-600 mt-2">Shared</h3>
+        </div>
+
+    </section>
+
+
+    <!-- MEDICAL DOCUMENTS -->
+    <section class="bg-white border rounded-2xl overflow-hidden mb-8">
+
+        <div class="p-6 border-b">
+            <h2 class="text-xl font-bold">Patient Files</h2>
+            <p class="text-slate-500 text-sm mt-1">
+                Documents shared by the patient
+            </p>
+        </div>
+
+        <div class="overflow-x-auto">
+
+            <table class="w-full text-sm text-left">
+
+                <thead class="bg-slate-50 text-slate-500">
+                    <tr>
+                        <th class="p-4">File Name</th>
+                        <th class="p-4">Category</th>
+                        <th class="p-4">Format</th>
+                        <th class="p-4">Shared On</th>
+                        <th class="p-4">Notes</th>
+                        <th class="p-4">Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="records-table" class="divide-y">
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- LAB TREND -->
+    <section class="bg-white border rounded-2xl p-6">
+
+        <div class="mb-5">
+            <h2 class="text-xl font-bold">Lab Trend</h2>
+            <p class="text-slate-500 text-sm mt-1">
+                Patient laboratory results over time
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <div class="border rounded-xl p-5">
+                <h3 class="font-semibold mb-2">Blood Glucose Trend</h3>
+                <p class="text-sm text-slate-500 mb-4">
+                    Historical glucose readings (mg/dL)
+                </p>
+
+                <div id="glucose-chart" class="w-full mt-4">
+</div>
+
+<div id="glucose-labels"
+    class="flex justify-around text-xs text-slate-500 mt-2">
+</div>
+            </div>
+
+            <div class="border rounded-xl p-5">
+
+                <h3 class="font-semibold mb-4">Latest Results</h3>
+
+                <div id="latest-results" class="space-y-4">
+                </div>
+
+            </div>
+
+        </div>
+
+</section>
+
+</main>
+
+
+<!-- REPORT MODAL -->
+<div id="report-modal"
+    class="fixed inset-0 bg-slate-900/60 hidden items-center justify-center p-3 sm:p-6 z-50">
+
+    <div class="bg-white rounded-2xl w-full max-w-4xl max-h-[95vh] overflow-y-auto shadow-2xl">
+
+        <!-- Modal Header -->
+        <div class="sticky top-0 bg-white border-b px-5 py-4 flex justify-between items-center z-10">
+
+            <div>
+                <h2 class="text-xl font-bold text-slate-800">Medical Report</h2>
+                <p class="text-sm text-slate-500">Patient document preview</p>
+            </div>
+
+            <button onclick="closeReport()"
+                class="w-10 h-10 rounded-full hover:bg-slate-100 text-slate-500 text-2xl">
+                &times;
+            </button>
+
+        </div>
+
+        <!-- Report Content -->
+        <div id="report-content" class="p-5 sm:p-8">
+        </div>
+
+        <!-- Modal Buttons -->
+        <div class="border-t p-5 flex flex-wrap justify-end gap-3 bg-white">
+
+            <button onclick="closeReport()"
+                class="px-5 py-2.5 rounded-xl border text-slate-600 hover:bg-slate-50">
+                Close
+            </button>
+
+            <button onclick="printReport()"
+                class="px-5 py-2.5 rounded-xl bg-blue-600 text-white hover:bg-blue-700 flex items-center gap-2">
+                <i data-lucide="printer" class="w-4 h-4"></i>
+                Print Report
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+// =====================================
+// PATIENT DATA
+// =====================================
+
+const patients = {
+
+    "P-1042": {
+        name: "Mona Salem",
+        age: 34,
+        gender: "Female",
+        initials: "MS",
+        glucose: [165, 154, 148, 142, 135, 128],
+        results: [
+            ["HbA1c", "7.2%", "High"],
+            ["Blood Glucose", "128 mg/dL", "High"],
+            ["Kidney Function", "Normal", "Normal"]
+        ],
+        reports: [
+            ["CBC Report", "Lab Report", "PDF", "25 Nov 2026", "Routine blood examination"],
+            ["HbA1c Result", "Lab Report", "PDF", "23 Nov 2026", "Diabetes monitoring"],
+            ["Chest X-Ray", "Radiology", "JPG", "21 Nov 2026", "Chest imaging"],
+            ["Lipid Profile", "Lab Report", "PDF", "19 Nov 2026", "Cholesterol screening"],
+            ["Kidney Function Test", "Lab Report", "PDF", "17 Nov 2026", "Renal function assessment"],
+            ["ECG Report", "Cardiology", "PDF", "15 Nov 2026", "Heart activity examination"],
+            ["Blood Glucose Report", "Lab Report", "PDF", "12 Nov 2026", "Glucose monitoring"]
+        ]
+    },
+
+    "P-0987": {
+        name: "Omar Khaled",
+        age: 52,
+        gender: "Male",
+        initials: "OK",
+        glucose: [190, 182, 175, 168, 160, 154],
+        results: [
+            ["Blood Glucose", "154 mg/dL", "High"],
+            ["Blood Pressure", "145/90", "High"],
+            ["Cholesterol", "210 mg/dL", "High"]
+        ],
+        reports: [
+            ["CBC Report", "Lab Report", "PDF", "24 Nov 2026", "Blood count follow-up"],
+            ["Blood Glucose", "Lab Report", "PDF", "23 Nov 2026", "Glucose monitoring"],
+            ["HbA1c Result", "Lab Report", "PDF", "22 Nov 2026", "Diabetes assessment"],
+            ["ECG Report", "Cardiology", "PDF", "21 Nov 2026", "Cardiac assessment"],
+            ["Chest X-Ray", "Radiology", "JPG", "20 Nov 2026", "Chest examination"],
+            ["Lipid Profile", "Lab Report", "PDF", "19 Nov 2026", "Lipid screening"],
+            ["Kidney Function", "Lab Report", "PDF", "18 Nov 2026", "Renal screening"],
+            ["Liver Function", "Lab Report", "PDF", "17 Nov 2026", "Liver screening"],
+            ["Urine Analysis", "Lab Report", "PDF", "16 Nov 2026", "Urine examination"],
+            ["Blood Pressure Report", "Clinical", "PDF", "15 Nov 2026", "Blood pressure follow-up"],
+            ["Vitamin D Test", "Lab Report", "PDF", "14 Nov 2026", "Vitamin level"],
+            ["Thyroid Test", "Lab Report", "PDF", "13 Nov 2026", "Thyroid screening"]
+        ]
+    },
+
+    "P-1103": {
+        name: "Hana Mostafa",
+        age: 28,
+        gender: "Female",
+        initials: "HM",
+        glucose: [100, 105, 98, 102, 95, 97],
+        results: [
+            ["Blood Glucose", "97 mg/dL", "Normal"],
+            ["CBC", "Normal", "Normal"],
+            ["Vitamin D", "24 ng/mL", "Low"]
+        ],
+        reports: [
+            ["CBC Report", "Lab Report", "PDF", "20 Nov 2026", "Routine examination"],
+            ["Vitamin D Result", "Lab Report", "PDF", "18 Nov 2026", "Vitamin screening"],
+            ["Blood Glucose", "Lab Report", "PDF", "15 Nov 2026", "Blood sugar test"]
+        ]
+    },
+
+    "P-0856": {
+        name: "Youssef Adel",
+        age: 61,
+        gender: "Male",
+        initials: "YA",
+        glucose: [145, 150, 140, 138, 132, 129],
+        results: [
+            ["Blood Glucose", "129 mg/dL", "High"],
+            ["Blood Pressure", "138/85", "High"],
+            ["HbA1c", "6.8%", "High"]
+        ],
+        reports: [
+            ["CBC Report", "Lab Report", "PDF", "14 Nov 2026", "Routine blood test"],
+            ["HbA1c Result", "Lab Report", "PDF", "12 Nov 2026", "Glucose control"],
+            ["ECG Report", "Cardiology", "PDF", "10 Nov 2026", "Heart check"],
+            ["Chest X-Ray", "Radiology", "JPG", "09 Nov 2026", "Chest imaging"],
+            ["Lipid Profile", "Lab Report", "PDF", "08 Nov 2026", "Cholesterol test"],
+            ["Kidney Function", "Lab Report", "PDF", "07 Nov 2026", "Kidney assessment"],
+            ["Blood Glucose", "Lab Report", "PDF", "06 Nov 2026", "Glucose monitoring"],
+            ["Liver Function", "Lab Report", "PDF", "05 Nov 2026", "Liver test"],
+            ["Urine Analysis", "Lab Report", "PDF", "04 Nov 2026", "Urine test"]
+        ]
+    },
+
+    "P-1150": {
+        name: "Salma Nabil",
+        age: 45,
+        gender: "Female",
+        initials: "SN",
+        glucose: [110, 115, 108, 104, 100, 98],
+        results: [
+            ["Blood Glucose", "98 mg/dL", "Normal"],
+            ["Cholesterol", "185 mg/dL", "Normal"],
+            ["CBC", "Normal", "Normal"]
+        ],
+        reports: [
+            ["CBC Report", "Lab Report", "PDF", "02 Nov 2026", "Blood examination"],
+            ["Lipid Profile", "Lab Report", "PDF", "31 Oct 2026", "Lipid screening"],
+            ["Chest X-Ray", "Radiology", "JPG", "29 Oct 2026", "Chest examination"],
+            ["Blood Glucose", "Lab Report", "PDF", "28 Oct 2026", "Glucose test"],
+            ["ECG Report", "Cardiology", "PDF", "26 Oct 2026", "Heart check"]
+        ]
+    },
+
+    "P-1021": {
+        name: "Karim Fathy",
+        age: 39,
+        gender: "Male",
+        initials: "KF",
+        glucose: [120, 118, 115, 112, 110, 108],
+        results: [
+            ["Blood Glucose", "108 mg/dL", "Normal"],
+            ["CBC", "Normal", "Normal"],
+            ["Kidney Function", "Normal", "Normal"]
+        ],
+        reports: [
+            ["CBC Report", "Lab Report", "PDF", "28 Oct 2026", "Routine blood examination"],
+            ["Blood Glucose", "Lab Report", "PDF", "26 Oct 2026", "Glucose monitoring"],
+            ["Kidney Function Test", "Lab Report", "PDF", "24 Oct 2026", "Renal assessment"],
+            ["ECG Report", "Cardiology", "PDF", "22 Oct 2026", "Heart examination"]
+        ]
+    }
+
+};
+
+
+// =====================================
+// GET PATIENT FROM URL
+// =====================================
+
+const params = new URLSearchParams(window.location.search);
+const patientID = params.get("id");
+const patient = patients[patientID];
+
+if (!patient) {
+
+    document.querySelector("main").innerHTML = `
+        <div class="bg-white p-10 rounded-2xl text-center">
+            <h1 class="text-2xl font-bold">Patient Not Found</h1>
+            <p class="text-slate-500 mt-3">
+                Patient record could not be found.
+            </p>
+            <a href="my-patients.html"
+                class="inline-block mt-5 text-blue-600">
+                Back to My Patients
+            </a>
+        </div>
+    `;
+
+} else {
+
+    // PATIENT INFO
+    document.getElementById("patient-avatar").textContent = patient.initials;
+    document.getElementById("patient-name").textContent = patient.name;
+    document.getElementById("patient-details").textContent =
+        patient.age + " years · " + patient.gender;
+
+    document.getElementById("patient-id").textContent =
+        "Patient ID: " + patientID;
+
+    document.getElementById("total-records").textContent =
+        patient.reports.length;
+
+
+    // =====================================
+    // SHOW REPORTS
+    // =====================================
+
+    const table = document.getElementById("records-table");
+
+    patient.reports.forEach((report, index) => {
+
+        const row = document.createElement("tr");
+        row.className = "hover:bg-slate-50";
+
+        row.innerHTML = `
+            <td class="p-4 font-medium">${report[0]}</td>
+            <td class="p-4">${report[1]}</td>
+            <td class="p-4">${report[2]}</td>
+            <td class="p-4 whitespace-nowrap">${report[3]}</td>
+            <td class="p-4 text-slate-500">${report[4]}</td>
+            <td class="p-4">
+                <button
+                    onclick="openReport(${index})"
+                    class="bg-blue-50 text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition">
+                    Open
+                </button>
+            </td>
+        `;
+
+        table.appendChild(row);
+
+    });
+
+
+
+    // =====================================
+// LAB TREND - LINE CHART
+// =====================================
+
+const chart = document.getElementById("glucose-chart");
+const labels = document.getElementById("glucose-labels");
+
+const values = patient.glucose;
+
+const chartWidth = 600;
+const chartHeight = 220;
+
+const paddingX = 45;
+const paddingY = 25;
+
+const minValue = 0;
+const maxValue = 220;
+
+const chartPoints = values.map((value, index) => {
+
+    const x = paddingX +
+        (index * (chartWidth - paddingX * 2)) /
+        (values.length - 1);
+
+    const y = chartHeight - paddingY -
+        ((value - minValue) / (maxValue - minValue)) *
+        (chartHeight - paddingY * 2);
+
+    return { x, y, value };
+
+});
+
+const pointsString = chartPoints
+    .map(point => `${point.x},${point.y}`)
+    .join(" ");
+
+
+// GRID LINES
+
+let gridLines = "";
+
+for (let value = 50; value <= 200; value += 50) {
+
+    const y = chartHeight - paddingY -
+        ((value - minValue) / (maxValue - minValue)) *
+        (chartHeight - paddingY * 2);
+
+    gridLines += `
+        <line
+            x1="${paddingX}"
+            y1="${y}"
+            x2="${chartWidth - paddingX}"
+            y2="${y}"
+            stroke="#e2e8f0"
+            stroke-dasharray="4 4"
+        />
+
+        <text
+            x="8"
+            y="${y + 4}"
+            font-size="11"
+            fill="#94a3b8"
+        >
+            ${value}
+        </text>
+    `;
+}
+
+
+// CHART
+
+chart.innerHTML = `
+
+    <svg
+        viewBox="0 0 ${chartWidth} ${chartHeight}"
+        class="w-full"
+        style="overflow: visible"
+    >
+
+        ${gridLines}
+
+        <polyline
+            points="${pointsString}"
+            fill="none"
+            stroke="#3b82f6"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        />
+
+        ${chartPoints.map(point => `
+
+            <circle
+                cx="${point.x}"
+                cy="${point.y}"
+                r="5"
+                fill="#2563eb"
+                stroke="white"
+                stroke-width="2"
+            >
+
+                <title>Glucose: ${point.value} mg/dL</title>
+
+            </circle>
+
+            <text
+                x="${point.x}"
+                y="${point.y - 13}"
+                text-anchor="middle"
+                font-size="12"
+                font-weight="bold"
+                fill="#334155"
+            >
+                ${point.value}
+            </text>
+
+        `).join("")}
+
+    </svg>
+
+`;
+
+
+// CHART LABELS
+
+labels.innerHTML = values.map((value, index) => `
+
+    <span>
+        T${index + 1}
+    </span>
+
+`).join("");
+
+    // LATEST RESULTS
+
+    const latest = document.getElementById("latest-results");
+
+    patient.results.forEach(result => {
+
+        const item = document.createElement("div");
+        item.className = "border-b pb-3";
+
+        let statusColor = "text-green-600";
+
+        if (result[2] === "High") {
+            statusColor = "text-orange-600";
+        }
+
+        if (result[2] === "Low") {
+            statusColor = "text-red-600";
+        }
+
+        item.innerHTML = `
+            <div class="flex justify-between gap-3">
+                <span class="text-slate-500">${result[0]}</span>
+                <span class="font-semibold">${result[1]}</span>
+            </div>
+            <p class="text-xs ${statusColor} mt-1">${result[2]}</p>
+        `;
+
+        latest.appendChild(item);
+
+    });
+
+}
+
+
+// =====================================
+// =====================================
+// OPEN REPORT - PROFESSIONAL PREVIEW
+// =====================================
+
+function openReport(index) {
+
+    const report = patient.reports[index];
+
+    if (!report) return;
+
+    const reportName = report[0];
+    const category = report[1];
+    const format = report[2];
+    const date = report[3];
+    const notes = report[4];
+
+    let reportBody = "";
+
+    // ---------------------------------
+    // RADIOLOGY REPORT
+    // ---------------------------------
+
+    if (category === "Radiology") {
+
+        reportBody = `
+            <div class="border rounded-xl p-5 mt-6">
+
+                <h3 class="text-lg font-bold mb-4 text-slate-800">
+                    Radiology Report
+                </h3>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+
+                    <div>
+                        <p class="text-sm text-slate-500">Examination</p>
+                        <p class="font-semibold">${reportName}</p>
+                    </div>
+
+                    <div>
+                        <p class="text-sm text-slate-500">Study Date</p>
+                        <p class="font-semibold">${date}</p>
+                    </div>
+
+                </div>
+
+                <div class="mt-6 bg-slate-50 p-5 rounded-xl">
+
+                    <h4 class="font-bold mb-2">Findings</h4>
+
+                    <p class="text-slate-600 leading-7">
+                        Sample radiology report preview.
+                        The actual imaging findings and radiologist
+                        interpretation will be added when the original
+                        document is connected.
+                    </p>
+
+                    <h4 class="font-bold mt-5 mb-2">Impression</h4>
+
+                    <p class="text-slate-600 leading-7">
+                        No actual radiology interpretation is available
+                        in this demo.
+                    </p>
+
+                </div>
+
+            </div>
+        `;
+
+    }
+
+    // ---------------------------------
+    // ECG REPORT
+    // ---------------------------------
+
+    else if (category === "Cardiology") {
+
+        reportBody = `
+            <div class="border rounded-xl p-5 mt-6">
+
+                <h3 class="text-lg font-bold mb-4">
+                    Cardiac Report
+                </h3>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+
+                    <div>
+                        <p class="text-sm text-slate-500">Examination</p>
+                        <p class="font-semibold">${reportName}</p>
+                    </div>
+
+                    <div>
+                        <p class="text-sm text-slate-500">Report Date</p>
+                        <p class="font-semibold">${date}</p>
+                    </div>
+
+                </div>
+
+                <div class="mt-6 p-5 bg-slate-50 rounded-xl">
+
+                    <h4 class="font-bold mb-3">ECG Interpretation</h4>
+
+                    <p class="text-slate-600 leading-7">
+                        Sample ECG report preview.
+                        The original ECG tracing, measurements,
+                        and cardiologist interpretation are not
+                        connected to this demo.
+                    </p>
+
+                </div>
+
+            </div>
+        `;
+
+    }
+
+    // ---------------------------------
+    // LABORATORY REPORT
+    // ---------------------------------
+
+    else {
+
+        reportBody = `
+            <div class="border rounded-xl p-5 mt-6">
+
+                <h3 class="text-lg font-bold mb-4">
+                    Laboratory Results
+                </h3>
+
+                <div class="overflow-x-auto">
+
+                    <table class="w-full text-sm text-left border-collapse">
+
+                        <thead class="bg-slate-100">
+
+                            <tr>
+                                <th class="p-3 border">Test</th>
+                                <th class="p-3 border">Result</th>
+                                <th class="p-3 border">Reference</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td class="p-3 border">
+                                    ${reportName}
+                                </td>
+
+                                <td class="p-3 border text-slate-500">
+                                    Not connected
+                                </td>
+
+                                <td class="p-3 border text-slate-500">
+                                    Not available
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <div class="mt-5 bg-slate-50 rounded-xl p-4">
+
+                    <h4 class="font-semibold mb-2">Laboratory Notes</h4>
+
+                    <p class="text-sm text-slate-600 leading-6">
+                        ${notes}
+                    </p>
+
+                    <p class="text-sm text-slate-500 mt-3">
+                        The original laboratory values and reference ranges
+                        will appear here after the actual report is connected.
+                    </p>
+
+                </div>
+
+            </div>
+        `;
+
+    }
+
+
+    // ---------------------------------
+    // BUILD REPORT
+    // ---------------------------------
+
+    document.getElementById("report-content").innerHTML = `
+
+        <div id="report-print-area">
+
+            <!-- REPORT BRAND -->
+            <div class="border-b-2 border-blue-600 pb-5">
+
+                <div class="flex justify-between items-start gap-4 flex-wrap">
+
+                    <div>
+
+                        <h1 class="text-3xl font-bold text-blue-700">
+                            Chronicare
+                        </h1>
+
+                        <p class="text-sm text-slate-500 mt-1">
+                            Digital Healthcare Records
+                        </p>
+
+                    </div>
+
+                    <div class="text-right">
+
+                        <p class="text-xs text-slate-400">
+                            DOCUMENT TYPE
+                        </p>
+
+                        <p class="font-semibold text-slate-700">
+                            ${category}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DEMO WARNING -->
+            <div class="mt-5 bg-amber-50 border border-amber-200 rounded-xl p-3">
+
+                <p class="text-sm text-amber-800 font-semibold">
+                    DEMO DOCUMENT — SAMPLE PREVIEW
+                </p>
+
+                <p class="text-xs text-amber-700 mt-1">
+                    This page contains sample interface content.
+                    It is not an actual medical report or real patient result.
+                </p>
+
+            </div>
+
+
+            <!-- PATIENT INFORMATION -->
+            <div class="bg-blue-50 rounded-xl p-5 mt-5">
+
+                <h3 class="font-bold text-blue-800 mb-4">
+                    Patient Information
+                </h3>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+
+                    <div>
+                        <p class="text-xs text-slate-500">Patient Name</p>
+                        <p class="font-semibold">${patient.name}</p>
+                    </div>
+
+                    <div>
+                        <p class="text-xs text-slate-500">Patient ID</p>
+                        <p class="font-semibold">${patientID}</p>
+                    </div>
+
+                    <div>
+                        <p class="text-xs text-slate-500">Age / Gender</p>
+                        <p class="font-semibold">${patient.age} / ${patient.gender}</p>
+                    </div>
+
+                    <div>
+                        <p class="text-xs text-slate-500">Shared Date</p>
+                        <p class="font-semibold">${date}</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- REPORT INFORMATION -->
+            <div class="mt-6">
+
+                <h2 class="text-2xl font-bold text-slate-800">
+                    ${reportName}
+                </h2>
+
+                <div class="grid sm:grid-cols-2 gap-4 mt-4">
+
+                    <div class="border rounded-xl p-4">
+
+                        <p class="text-sm text-slate-500">
+                            Report Category
+                        </p>
+
+                        <p class="font-semibold mt-1">
+                            ${category}
+                        </p>
+
+                    </div>
+
+                    <div class="border rounded-xl p-4">
+
+                        <p class="text-sm text-slate-500">
+                            File Format
+                        </p>
+
+                        <p class="font-semibold mt-1">
+                            ${format}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- REPORT BODY -->
+            ${reportBody}
+
+
+            <!-- FOOTER -->
+            <div class="border-t mt-8 pt-5 text-center">
+
+                <p class="text-sm font-semibold text-slate-700">
+                    Chronicare — Patient Records System
+                </p>
+
+                <p class="text-xs text-slate-400 mt-1">
+                    Demo preview only. Not a substitute for an original medical document.
+                </p>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    // SHOW MODAL
+    const modal = document.getElementById("report-modal");
+
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+
+    document.body.style.overflow = "hidden";
+
+    lucide.createIcons();
+
+}
+
+
+// =====================================
+// PRINT REPORT
+// =====================================
+
+function printReport() {
+
+    window.print();
+
+}
+
+
+// =====================================
+// CLOSE REPORT
+// =====================================
+
+function closeReport() {
+
+    const modal = document.getElementById("report-modal");
+
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+
+}
+
+lucide.createIcons();
+
+</script>
+
+</body>
+</html>
